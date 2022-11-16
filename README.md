@@ -20,6 +20,11 @@ Fitness Tracker web app that only stores your data locally.
 
   - [ ] `operation-dialog` inputs for new models
 
+- [ ] Record Converters (based on previous fitness trackers)
+
+  - [ ] Default Exercises
+  - [ ] Default Workouts
+
 - [ ] New Routes
 
   - [ ] `active-workout` route (view)
