@@ -2,37 +2,6 @@
 
 Fitness Tracker web app that only stores your data locally.
 
-## Post Cloning Steps
-
-- [ ] Update `package.json`
-
-  - [ ] `name`
-  - [ ] `description`
-  - [ ] `version`
-  - [ ] `repository`
-  - [ ] `bugs`
-  - [ ] `homepage`
-
-- [ ] Update `base` in `~/vite.config.ts` to your repository name for deployments to work
-- [ ] Update `AppString` in `~/src/constants/ui/string-enums.ts` to represent your app
-- [ ] Update `title` in `~/index.html` to reflect the app name you use in `ui-enums.ts`
-
-- [ ] Update `GitHub` repository settings
-
-  - [ ] Add a short Description
-  - [ ] Add the GitHub Pages website
-  - [ ] Add Topics
-  - [ ] Update the `Include in the home page` section
-
-    - [ ] Uncheck `Releases`
-    - [ ] Uncheck `Packages`
-    - [ ] Uncheck `Environments`
-
-- [ ] Update `README.md`
-
-  - [ ] Add detailed project description
-  - [ ] Remove unneeded sections (even this one)
-
 ## Table of Contents
 
 - [Usage](#usage)
