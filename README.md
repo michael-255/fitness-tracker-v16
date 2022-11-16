@@ -2,6 +2,32 @@
 
 Fitness Tracker web app that only stores your data locally.
 
+## Todos
+
+- [ ] New Models
+
+  - [ ] `Exercise`
+  - [ ] `ExerciseRecord`
+  - [ ] `Workout`
+  - [ ] `WorkoutRecord`
+
+- [ ] Code updates for new models
+
+  - [ ] `TableHelper` service
+  - [ ] `LocalDatabase` service call methods
+
+- [ ] New Components
+
+  - [ ] `operation-dialog` inputs for new models
+
+- [ ] New Routes
+
+  - [ ] `active-workout` route (view)
+
+- [ ] New Stores
+
+  - [ ] `active-workout` store with `exerciseCards` state
+
 ## Table of Contents
 
 - [Usage](#usage)
