@@ -2,6 +2,10 @@
  * Represents available Dexie tables for the app and the name they are referenced by.
  */
 export enum AppTable {
+  EXERCISES = 'exercises',
+  EXERCISE_RECORDS = 'exerciseRecords',
+  WORKOUTS = 'workouts',
+  WORKOUT_RECORDS = 'workoutRecords',
   MEASUREMENTS = 'measurements',
   MEASUREMENT_RECORDS = 'measurementRecords',
   LOGS = 'logs',
@@ -27,6 +31,18 @@ export enum Field {
   DETAILS = 'details',
   MESSAGE = 'message',
   STACK = 'stack',
+  // Exercise
+  EXERCISE_TRACKS = 'exerciseTracks',
+  // Exercise Record
+  WEIGHT = 'weight',
+  REPS = 'reps',
+  DISTANCE = 'distance',
+  DURATION = 'duration',
+  // Workout
+  EXERCISE_IDS = 'exerciseIds',
+  // Workout Record
+  FINISHED_DATE = 'finishedDate',
+  EXERCISE_RECORD_IDS = 'exerciseRecordIds',
   // Measurement
   MEASUREMENT_TYPE = 'measurementType',
   // Measurement Record
@@ -75,6 +91,17 @@ export enum MeasurementType {
   LBS = 'Lbs',
   INCHES = 'Inches',
   PERCENT = '%',
+}
+
+/**
+ * Which exercise fields are used by a specific Exercise.
+ */
+export enum ExerciseTracks {
+  MULTIPLE_SETS = 'Multiple Sets',
+  WEIGHT_LBS = 'Weight (lbs)',
+  REPS = 'Reps',
+  DURATION_MINUTES = 'Duration (minutes)',
+  DISTANCE_MILES = 'Distance (miles)',
 }
 
 /**

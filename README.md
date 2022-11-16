@@ -11,11 +11,6 @@ Fitness Tracker web app that only stores your data locally.
   - [ ] `Workout`
   - [ ] `WorkoutRecord`
 
-- [ ] Code updates for new models
-
-  - [ ] `TableHelper` service
-  - [ ] `LocalDatabase` service call methods
-
 - [ ] New Components
 
   - [ ] `operation-dialog` inputs for new models

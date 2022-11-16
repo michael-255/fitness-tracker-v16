@@ -79,6 +79,46 @@ const router = createRouter({
       component: () => import(`../components/data-table/DataTabs.vue`),
     },
     {
+      path: '/exercises-data',
+      name: RouteName.EXERCISES_DATA,
+      meta: {
+        layout: 'MenuLayout',
+        tabs: [
+          {
+            name: 'Exercises',
+            icon: Icon.EXERCISES,
+            table: AppTable.EXERCISES,
+          },
+          {
+            name: 'Records',
+            icon: Icon.RECORDS,
+            table: AppTable.EXERCISE_RECORDS,
+          },
+        ],
+      } as RouteMeta,
+      component: () => import(`../components/data-table/DataTabs.vue`),
+    },
+    {
+      path: '/workouts-data',
+      name: RouteName.WORKOUTS_DATA,
+      meta: {
+        layout: 'MenuLayout',
+        tabs: [
+          {
+            name: 'Workouts',
+            icon: Icon.WORKOUTS,
+            table: AppTable.WORKOUTS,
+          },
+          {
+            name: 'Records',
+            icon: Icon.RECORDS,
+            table: AppTable.WORKOUT_RECORDS,
+          },
+        ],
+      } as RouteMeta,
+      component: () => import(`../components/data-table/DataTabs.vue`),
+    },
+    {
       path: '/:pathMatch(.*)*', // 404 Not Found
       name: RouteName.NOT_FOUND,
       meta: { layout: 'MenuLayout' },

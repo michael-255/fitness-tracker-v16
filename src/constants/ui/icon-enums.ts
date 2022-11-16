@@ -36,7 +36,6 @@ export enum Icon {
   DASHBOARD = 'dashboard',
   REPORT = 'timeline',
   MANAGEMENT = 'tune',
-  WORKOUT = 'assignment',
   SETTINGS = 'settings',
   DETAILS = 'summarize',
   CODE = 'code',

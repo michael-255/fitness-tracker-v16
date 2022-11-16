@@ -7,6 +7,10 @@ import { Log } from '@/models/__Log'
 import { Setting } from '@/models/__Setting'
 import { Measurement } from '@/models/Measurement'
 import { MeasurementRecord } from '@/models/MeasurementRecord'
+import { Exercise } from '@/models/Exercise'
+import { ExerciseRecord } from '@/models/ExerciseRecord'
+import { Workout } from '@/models/Workout'
+import { WorkoutRecord } from '@/models/WorkoutRecord'
 
 export class LocalDatabase {
   dexieWrapper: DexieWrapper
@@ -171,6 +175,10 @@ export class LocalDatabase {
    */
   async callCreate(table: AppTable, data: DatabaseObject): Promise<void> {
     return await {
+      [AppTable.EXERCISES]: Exercise.create,
+      [AppTable.EXERCISE_RECORDS]: ExerciseRecord.create,
+      [AppTable.WORKOUTS]: Workout.create,
+      [AppTable.WORKOUT_RECORDS]: WorkoutRecord.create,
       [AppTable.MEASUREMENTS]: Measurement.create,
       [AppTable.MEASUREMENT_RECORDS]: MeasurementRecord.create,
       [AppTable.LOGS]: Log.create,
@@ -187,6 +195,10 @@ export class LocalDatabase {
    */
   async callUpdate(table: AppTable, originalId: string, props: DatabaseObject): Promise<void> {
     return await {
+      [AppTable.EXERCISES]: Exercise.update,
+      [AppTable.EXERCISE_RECORDS]: ExerciseRecord.update,
+      [AppTable.WORKOUTS]: Workout.update,
+      [AppTable.WORKOUT_RECORDS]: WorkoutRecord.update,
       [AppTable.MEASUREMENTS]: Measurement.update,
       [AppTable.MEASUREMENT_RECORDS]: MeasurementRecord.update,
       [AppTable.LOGS]: Log.update,
@@ -202,6 +214,10 @@ export class LocalDatabase {
    */
   async callReport(table: AppTable, id: string): Promise<any> {
     return await {
+      [AppTable.EXERCISES]: Exercise.report,
+      [AppTable.EXERCISE_RECORDS]: ExerciseRecord.report,
+      [AppTable.WORKOUTS]: Workout.report,
+      [AppTable.WORKOUT_RECORDS]: WorkoutRecord.report,
       [AppTable.MEASUREMENTS]: Measurement.report,
       [AppTable.MEASUREMENT_RECORDS]: MeasurementRecord.report,
       [AppTable.LOGS]: Log.report,

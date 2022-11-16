@@ -92,6 +92,20 @@ const route = useRoute()
           </QItemSection>
           <QItemSection>Measurements</QItemSection>
         </QItem>
+
+        <QItem clickable v-ripple :to="{ name: RouteName.EXERCISES_DATA }">
+          <QItemSection avatar>
+            <QIcon color="primary" :name="Icon.EXERCISES" />
+          </QItemSection>
+          <QItemSection>Exercises</QItemSection>
+        </QItem>
+
+        <QItem clickable v-ripple :to="{ name: RouteName.WORKOUTS_DATA }">
+          <QItemSection avatar>
+            <QIcon color="primary" :name="Icon.WORKOUTS" />
+          </QItemSection>
+          <QItemSection>Workouts</QItemSection>
+        </QItem>
       </QList>
     </QDrawer>
 
