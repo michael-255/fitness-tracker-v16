@@ -2,7 +2,7 @@ import { AppTable, Field, Operation, ExerciseTracks } from '@/constants/core/dat
 import type { DatabaseObject, DataTableProps } from '@/constants/types-interfaces'
 import { Activity, type IActivity } from '@/models/__Activity'
 import type { LocalDatabase } from '@/services/LocalDatabase'
-// import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
 export interface IExercise extends IActivity {
   exerciseTracks: ExerciseTracks[]
@@ -89,7 +89,10 @@ export class Exercise extends Activity {
   }
 
   static async create(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { id, createdDate, name, exerciseTracks } = data
+    const { id, createdDate, name } = data
+    let { exerciseTracks } = data
+    // Had to spread the array in an array to bypass an error with the database add function
+    exerciseTracks = [...exerciseTracks]
     await database.add(AppTable.EXERCISES, new Exercise({ id, createdDate, name, exerciseTracks }))
   }
 
@@ -131,7 +134,9 @@ export class Exercise extends Activity {
   static getFieldComponents(): any {
     return [
       ...Activity.getFieldComponents(),
-      // defineAsyncComponent(() => import('@/components/page-table/inputs/ExerciseTracksInput.vue')),
+      defineAsyncComponent(
+        () => import('@/components/shared/operation-dialog/inputs/ExerciseTracksSelect.vue')
+      ),
     ]
   }
 
