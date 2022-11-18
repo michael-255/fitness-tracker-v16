@@ -2,13 +2,11 @@ import { Record, type IRecord } from '@/models/__Record'
 import type { DatabaseObject, DataTableProps } from '@/constants/types-interfaces'
 import type { LocalDatabase } from '@/services/LocalDatabase'
 import { AppTable, Field, Operation } from '@/constants/core/data-enums'
-// import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
 export interface IExerciseRecord extends IRecord {
   weight?: number[]
   reps?: number[]
-  distance?: number[]
-  duration?: number[]
 }
 
 /**
@@ -18,8 +16,6 @@ export interface IExerciseRecord extends IRecord {
 export class ExerciseRecord extends Record {
   weight?: number[]
   reps?: number[]
-  distance?: number[]
-  duration?: number[]
 
   constructor(params: IExerciseRecord) {
     super({
@@ -29,8 +25,6 @@ export class ExerciseRecord extends Record {
     })
     this.weight = params.weight
     this.reps = params.reps
-    this.distance = params.distance
-    this.duration = params.duration
   }
 
   static async report(...params: any): Promise<void> {
@@ -38,20 +32,36 @@ export class ExerciseRecord extends Record {
     throw new Error('Not Supported')
   }
 
-  static async update(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { originalId, id, createdDate, parentId, weight, reps, distance, duration } = data
+  static async update(
+    database: LocalDatabase,
+    originalId: string,
+    props: DatabaseObject
+  ): Promise<void> {
+    const { id, createdDate, parentId } = props
+    let { weight, reps } = props
+
+    // Needed to bypass Dexie add issue
+    weight = [...weight]
+    reps = [...reps]
+
     await database.updateById(
-      originalId,
       AppTable.EXERCISE_RECORDS,
-      new ExerciseRecord({ id, createdDate, parentId, weight, reps, distance, duration })
+      originalId,
+      new ExerciseRecord({ id, createdDate, parentId, weight, reps })
     )
   }
 
   static async create(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { id, createdDate, parentId, weight, reps, distance, duration } = data
+    const { id, createdDate, parentId } = data
+    let { weight, reps } = data
+
+    // Needed to bypass Dexie add issue
+    weight = [...weight]
+    reps = [...reps]
+
     await database.add(
       AppTable.EXERCISE_RECORDS,
-      new ExerciseRecord({ id, createdDate, parentId, weight, reps, distance, duration })
+      new ExerciseRecord({ id, createdDate, parentId, weight, reps })
     )
   }
 
@@ -82,17 +92,19 @@ export class ExerciseRecord extends Record {
   }
 
   static getVisibleColumns(): Field[] {
-    return []
+    return [Field.WEIGHT, Field.REPS]
   }
 
   static getFields() {
-    return [...Record.getFields(), Field.WEIGHT, Field.REPS, Field.DISTANCE, Field.DURATION]
+    return [...Record.getFields(), Field.WEIGHT, Field.REPS]
   }
 
   static getFieldComponents(): any {
     return [
       ...Record.getFieldComponents(),
-      // defineAsyncComponent(() => import('@/components/page-table/inputs/WeightInput.vue')),
+      defineAsyncComponent(
+        () => import('@/components/shared/operation-dialog/inputs/SetInput.vue')
+      ),
     ]
   }
 
@@ -115,24 +127,6 @@ export class ExerciseRecord extends Record {
         sortable: true,
         required: false,
         field: (row: any) => row[Field.REPS],
-        format: (val: number[]) => val,
-      },
-      {
-        name: Field.DISTANCE,
-        label: 'Distance (miles)',
-        align: 'left',
-        sortable: true,
-        required: false,
-        field: (row: any) => row[Field.DISTANCE],
-        format: (val: number[]) => val,
-      },
-      {
-        name: Field.DURATION,
-        label: 'Duration (minutes)',
-        align: 'left',
-        sortable: true,
-        required: false,
-        field: (row: any) => row[Field.DURATION],
         format: (val: number[]) => val,
       },
     ]

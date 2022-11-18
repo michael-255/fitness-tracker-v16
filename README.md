@@ -8,9 +8,9 @@ Fitness Tracker web app that only stores your data locally.
 
   - [x] `Exercise`
     - [x] `ExerciseTracksSelect.vue`
-  - [ ] `ExerciseRecord`
-    - [ ] `SetInput.vue`
-    - [ ] `SetItem.vue`
+  - [x] `ExerciseRecord`
+    - [x] `SetInput.vue`
+    - [x] `WeightRepsItem.vue`
   - [ ] `Workout`
     - [ ] `ExerciseIdsSelect.vue`
   - [ ] `WorkoutRecord`

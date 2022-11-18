@@ -5,7 +5,7 @@ import type { LocalDatabase } from '@/services/LocalDatabase'
 import { defineAsyncComponent } from 'vue'
 
 export interface IExercise extends IActivity {
-  exerciseTracks: ExerciseTracks[]
+  exerciseTracks: ExerciseTracks
 }
 
 /**
@@ -13,7 +13,7 @@ export interface IExercise extends IActivity {
  * @param params IExercise
  */
 export class Exercise extends Activity {
-  exerciseTracks: ExerciseTracks[]
+  exerciseTracks: ExerciseTracks
 
   constructor(params: IExercise) {
     super({
@@ -79,20 +79,21 @@ export class Exercise extends Activity {
     // }
   }
 
-  static async update(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { originalId, id, createdDate, name, exerciseTracks } = data
+  static async update(
+    database: LocalDatabase,
+    originalId: string,
+    props: DatabaseObject
+  ): Promise<void> {
+    const { id, createdDate, name, exerciseTracks } = props
     await database.updateById(
-      originalId,
       AppTable.EXERCISES,
+      originalId,
       new Exercise({ id, createdDate, name, exerciseTracks })
     )
   }
 
   static async create(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { id, createdDate, name } = data
-    let { exerciseTracks } = data
-    // Had to spread the array in an array to bypass an error with the database add function
-    exerciseTracks = [...exerciseTracks]
+    const { id, createdDate, name, exerciseTracks } = data
     await database.add(AppTable.EXERCISES, new Exercise({ id, createdDate, name, exerciseTracks }))
   }
 
@@ -124,7 +125,7 @@ export class Exercise extends Activity {
   }
 
   static getVisibleColumns(): Field[] {
-    return [Field.NAME]
+    return [Field.NAME, Field.EXERCISE_TRACKS]
   }
 
   static getFields(): Field[] {

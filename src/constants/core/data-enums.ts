@@ -36,8 +36,6 @@ export enum Field {
   // Exercise Record
   WEIGHT = 'weight',
   REPS = 'reps',
-  DISTANCE = 'distance',
-  DURATION = 'duration',
   // Workout
   EXERCISE_IDS = 'exerciseIds',
   // Workout Record
@@ -98,11 +96,7 @@ export enum MeasurementType {
  */
 export enum ExerciseTracks {
   CONFIRMATION_ONLY = 'Confirmation Only',
-  MULTIPLE_SETS = 'Multiple Sets',
-  WEIGHT_LBS = 'Weight (lbs)',
-  REPS = 'Reps',
-  DURATION_MINUTES = 'Duration (minutes)',
-  DISTANCE_MILES = 'Distance (miles)',
+  WEIGHT_AND_REPS = 'Weight & Reps',
 }
 
 /**

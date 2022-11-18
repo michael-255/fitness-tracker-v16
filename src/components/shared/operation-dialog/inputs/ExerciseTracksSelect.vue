@@ -3,7 +3,7 @@ import { onMounted, ref, type Ref } from 'vue'
 import { QSelect } from 'quasar'
 import { ExerciseTracks } from '@/constants/core/data-enums'
 import { useLogger } from '@/use/useLogger'
-import { isDataInArray } from '@/utils/validators'
+import { isDefined } from '@/utils/validators'
 import useOperationDialogStore from '@/stores/operation-dialog'
 
 const { log } = useLogger()
@@ -14,7 +14,10 @@ const options: Ref<any[]> = ref([])
 onMounted(async () => {
   try {
     options.value = Object.values(ExerciseTracks)
-    operationDialogStore.temporaryItem.exerciseTracks = [options.value[0]]
+    operationDialogStore.temporaryItem.exerciseTracks = operationDialogStore.selectedItem
+      .exerciseTracks
+      ? operationDialogStore.selectedItem.exerciseTracks
+      : options.value[0]
     operationDialogStore.validateItem.exerciseTracks = true
   } catch (error) {
     log.error('ExerciseTracksSelect:onMounted', error)
@@ -31,9 +34,8 @@ function validateInput(): void {
     v-model="operationDialogStore.temporaryItem.exerciseTracks"
     ref="inputRef"
     label="Exercise Tracks"
-    multiple
     :options="options"
-    :rules="[(val: string[]) => isDataInArray(val) || '* Required']"
+    :rules="[(val: string) => isDefined(val) || '* Required']"
     emit-value
     map-options
     options-dense

@@ -33,11 +33,15 @@ export class WorkoutRecord extends Record {
     throw new Error('Not Supported')
   }
 
-  static async update(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { originalId, id, createdDate, parentId, finishedDate, exerciseRecordIds } = data
+  static async update(
+    database: LocalDatabase,
+    originalId: string,
+    props: DatabaseObject
+  ): Promise<void> {
+    const { id, createdDate, parentId, finishedDate, exerciseRecordIds } = props
     await database.updateById(
-      originalId,
       AppTable.WORKOUT_RECORDS,
+      originalId,
       new WorkoutRecord({ id, createdDate, parentId, finishedDate, exerciseRecordIds })
     )
   }

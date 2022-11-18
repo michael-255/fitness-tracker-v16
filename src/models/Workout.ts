@@ -54,11 +54,15 @@ export class Workout extends Activity {
     // }
   }
 
-  static async update(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { originalId, id, createdDate, name, exerciseIds } = data
+  static async update(
+    database: LocalDatabase,
+    originalId: string,
+    props: DatabaseObject
+  ): Promise<void> {
+    const { id, createdDate, name, exerciseIds } = props
     await database.updateById(
-      originalId,
       AppTable.WORKOUTS,
+      originalId,
       new Workout({ id, createdDate, name, exerciseIds })
     )
   }
