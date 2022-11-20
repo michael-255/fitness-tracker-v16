@@ -1,20 +1,29 @@
 <script setup lang="ts">
-import { QCard, QCardSection } from 'quasar'
 import { Icon } from '@/constants/ui/icon-enums'
+import { QPage } from 'quasar'
+
+// Header Title = Name of the workout
+// Exit workout button to the right
+// Finish workout button at the bottom
+
+function finishWorkout(): void {}
 </script>
 
 <template>
-  <!-- Temporary example as part of the Boilerplate App -->
   <QPage padding>
     <div class="row justify-center">
       <div class="col-12">
         <QCard>
           <QCardSection class="bg-dark text-white q-py-sm text-h5">
             <QIcon class="q-pb-xs q-pr-sm" :name="Icon.ACTIVITIES" />
-            Activity Tracker
+            Active Workout
           </QCardSection>
         </QCard>
       </div>
+    </div>
+
+    <div class="row justify-center q-mt-lg">
+      <QBtn label="Finish Workout" color="positive" @click="finishWorkout()" />
     </div>
   </QPage>
 </template>

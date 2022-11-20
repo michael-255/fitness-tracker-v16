@@ -175,6 +175,8 @@ export class LocalDatabase {
    */
   async callCreate(table: AppTable, data: DatabaseObject): Promise<void> {
     return await {
+      [AppTable.ACTIVE_WORKOUTS]: () => undefined,
+      [AppTable.ACTIVE_EXERCISES]: () => undefined,
       [AppTable.EXERCISES]: Exercise.create,
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.create,
       [AppTable.WORKOUTS]: Workout.create,
@@ -195,6 +197,8 @@ export class LocalDatabase {
    */
   async callUpdate(table: AppTable, originalId: string, props: DatabaseObject): Promise<void> {
     return await {
+      [AppTable.ACTIVE_WORKOUTS]: () => undefined,
+      [AppTable.ACTIVE_EXERCISES]: () => undefined,
       [AppTable.EXERCISES]: Exercise.update,
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.update,
       [AppTable.WORKOUTS]: Workout.update,
@@ -214,6 +218,8 @@ export class LocalDatabase {
    */
   async callReport(table: AppTable, id: string): Promise<any> {
     return await {
+      [AppTable.ACTIVE_WORKOUTS]: () => undefined,
+      [AppTable.ACTIVE_EXERCISES]: () => undefined,
       [AppTable.EXERCISES]: Exercise.report,
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.report,
       [AppTable.WORKOUTS]: Workout.report,

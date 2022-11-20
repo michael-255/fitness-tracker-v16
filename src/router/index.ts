@@ -27,10 +27,10 @@ const router = createRouter({
       component: () => import(`../views/AboutView.vue`),
     },
     {
-      path: '/active',
-      name: RouteName.ACTIVE,
+      path: '/active-workout',
+      name: RouteName.ACTIVE_WORKOUT,
       meta: { layout: 'ActiveLayout' } as RouteMeta,
-      component: () => import(`../views/ActiveView.vue`),
+      component: () => import(`../views/ActiveWorkoutView.vue`),
     },
     {
       path: '/take-measurements',

@@ -16,6 +16,8 @@ import { WorkoutRecord, type IWorkoutRecord } from '@/models/WorkoutRecord'
 export class DexieWrapper extends Dexie {
   // Information for the typing system to help Dexie out
   // REQUIRED
+  [AppTable.ACTIVE_WORKOUTS]!: Table<IWorkoutRecord>;
+  [AppTable.ACTIVE_EXERCISES]!: Table<IExerciseRecord>;
   [AppTable.EXERCISES]!: Table<IExercise>;
   [AppTable.EXERCISE_RECORDS]!: Table<IExerciseRecord>;
   [AppTable.WORKOUTS]!: Table<IWorkout>;
@@ -30,6 +32,8 @@ export class DexieWrapper extends Dexie {
 
     this.version(1).stores({
       // REQUIRED
+      [AppTable.ACTIVE_WORKOUTS]: `&${Field.ID}, ${Field.PARENT_ID}`,
+      [AppTable.ACTIVE_EXERCISES]: `&${Field.ID}, ${Field.PARENT_ID}`,
       [AppTable.EXERCISES]: `&${Field.ID}`,
       [AppTable.EXERCISE_RECORDS]: `&${Field.ID}, ${Field.PARENT_ID}`,
       [AppTable.WORKOUTS]: `&${Field.ID}`,
@@ -41,6 +45,8 @@ export class DexieWrapper extends Dexie {
     })
 
     // REQUIRED
+    this[AppTable.ACTIVE_WORKOUTS].mapToClass(WorkoutRecord)
+    this[AppTable.ACTIVE_EXERCISES].mapToClass(ExerciseRecord)
     this[AppTable.EXERCISES].mapToClass(Exercise)
     this[AppTable.EXERCISE_RECORDS].mapToClass(ExerciseRecord)
     this[AppTable.WORKOUTS].mapToClass(Workout)

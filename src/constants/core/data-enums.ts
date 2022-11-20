@@ -2,6 +2,8 @@
  * Represents available Dexie tables for the app and the name they are referenced by.
  */
 export enum AppTable {
+  ACTIVE_WORKOUTS = 'activeWorkouts',
+  ACTIVE_EXERCISES = 'activeExercises',
   EXERCISES = 'exercises',
   EXERCISE_RECORDS = 'exerciseRecords',
   WORKOUTS = 'workouts',

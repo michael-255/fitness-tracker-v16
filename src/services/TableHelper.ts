@@ -12,6 +12,8 @@ import { ExerciseRecord } from '@/models/ExerciseRecord'
 export const TableHelper = {
   getFields(table: AppTable): Field[] {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: [],
+      [AppTable.ACTIVE_EXERCISES]: [],
       [AppTable.EXERCISES]: Exercise.getFields(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getFields(),
       [AppTable.WORKOUTS]: Workout.getFields(),
@@ -25,6 +27,8 @@ export const TableHelper = {
 
   getComponents(table: AppTable): any[] {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: [],
+      [AppTable.ACTIVE_EXERCISES]: [],
       [AppTable.EXERCISES]: Exercise.getFieldComponents(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getFieldComponents(),
       [AppTable.WORKOUTS]: Workout.getFieldComponents(),
@@ -38,6 +42,8 @@ export const TableHelper = {
 
   getColumns(table: AppTable): DataTableProps[] {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: [],
+      [AppTable.ACTIVE_EXERCISES]: [],
       [AppTable.EXERCISES]: Exercise.getColumns(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getColumns(),
       [AppTable.WORKOUTS]: Workout.getColumns(),
@@ -51,6 +57,8 @@ export const TableHelper = {
 
   getVisibleColumns(table: AppTable): Field[] {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: [],
+      [AppTable.ACTIVE_EXERCISES]: [],
       [AppTable.EXERCISES]: Exercise.getVisibleColumns(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getVisibleColumns(),
       [AppTable.WORKOUTS]: Workout.getVisibleColumns(),
@@ -64,6 +72,8 @@ export const TableHelper = {
 
   getOperations(table: AppTable): Operation[] {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: [],
+      [AppTable.ACTIVE_EXERCISES]: [],
       [AppTable.EXERCISES]: Exercise.getOperations(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getOperations(),
       [AppTable.WORKOUTS]: Workout.getOperations(),
@@ -77,6 +87,8 @@ export const TableHelper = {
 
   getParentTable(table: AppTable): AppTable | null {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: null,
+      [AppTable.ACTIVE_EXERCISES]: null,
       [AppTable.EXERCISES]: Exercise.getParentTable(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getParentTable(),
       [AppTable.WORKOUTS]: Workout.getParentTable(),
@@ -90,6 +102,8 @@ export const TableHelper = {
 
   getLabelPlural(table: AppTable): string {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: '',
+      [AppTable.ACTIVE_EXERCISES]: '',
       [AppTable.EXERCISES]: Exercise.getLabelPlural(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getLabelPlural(),
       [AppTable.WORKOUTS]: Workout.getLabelPlural(),
@@ -103,6 +117,8 @@ export const TableHelper = {
 
   getLabelSingular(table: AppTable): string {
     return {
+      [AppTable.ACTIVE_WORKOUTS]: '',
+      [AppTable.ACTIVE_EXERCISES]: '',
       [AppTable.EXERCISES]: Exercise.getLabelSingular(),
       [AppTable.EXERCISE_RECORDS]: ExerciseRecord.getLabelSingular(),
       [AppTable.WORKOUTS]: Workout.getLabelSingular(),
