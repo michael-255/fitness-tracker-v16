@@ -50,14 +50,14 @@ export class Measurement extends Activity {
     const datasets = []
     datasets.push({
       label: parent?.measurementType,
-      borderColor: '#1976D2',
+      borderColor: '#4CAF50',
       data: measurementValues,
     })
 
     const generatedReports = [] as GeneratedReport[]
 
     generatedReports.push({
-      title: parent?.name ? `${parent.name} (All Records)` : '',
+      title: parent?.name ? `${parent.name} (all Records)` : '',
       firstRecordDate: isoToDisplayDate(records[0]?.createdDate) || '-',
       lastRecordDate: isoToDisplayDate(records[records.length - 1]?.createdDate) || '-',
       chartLabels: records.map(() => ''),

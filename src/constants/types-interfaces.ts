@@ -73,5 +73,5 @@ export type ChartData = {
 export type ChartDataset = {
   label: string
   borderColor: string
-  data: number[]
+  data: (number | null)[]
 }

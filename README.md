@@ -4,13 +4,6 @@ Fitness Tracker web app that only stores your data locally.
 
 ## Todos
 
-- [ ] Record Converters (based on previous fitness trackers)
-
-  - [ ] Default Exercises
-  - [ ] Default Workouts
-
-- [ ] Fix model `Reports`
-
 - [ ] New Routes
 
   - [ ] `active-workout` route (view)
