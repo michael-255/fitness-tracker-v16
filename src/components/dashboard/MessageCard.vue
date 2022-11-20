@@ -3,8 +3,6 @@ import { QCard, QCardSection } from 'quasar'
 import { Icon } from '@/constants/ui/icon-enums'
 import { AppString } from '@/constants/ui/string-enums'
 import { RouteName } from '@/constants/ui/routing-enums'
-import DefaultsBtn from '@/components/settings/buttons/DefaultsBtn.vue'
-import TestLogsBtn from '@/components/settings/buttons/TestLogsBtn.vue'
 </script>
 
 <template>
@@ -15,37 +13,18 @@ import TestLogsBtn from '@/components/settings/buttons/TestLogsBtn.vue'
     </QCardSection>
 
     <QCardSection>
-      This is the {{ AppString.APP_NAME }}. It has basic data tables, settings, and routing setup
-      out of the box. Use the menu in the top left to navigate throughout the app. Look through the
-      code and README to get an understanding of how it is organized.
+      {{ AppString.APP_NAME }} allows you to track available workouts from the list below. Make sure
+      you create some or load the default workouts if you don't see any. You can also track body
+      measurements by clicking the "Take Measurements" button.
     </QCardSection>
 
     <QCardSection>
-      <div>
-        <TestLogsBtn />
-      </div>
-
-      <div class="q-mt-md">
-        <DefaultsBtn />
-      </div>
-
-      <div class="q-mt-md">
-        <QBtn
-          color="positive"
-          :to="{ name: RouteName.TAKE_MEASUREMENTS }"
-          :icon="Icon.MEASUREMENTS"
-          label="Take Measurements"
-        />
-      </div>
-
-      <div class="q-mt-md">
-        <QBtn
-          color="positive"
-          :to="{ name: RouteName.ACTIVE }"
-          :icon="Icon.ACTIVITIES"
-          label="Track Activity"
-        />
-      </div>
+      <QBtn
+        color="positive"
+        :to="{ name: RouteName.TAKE_MEASUREMENTS }"
+        :icon="Icon.MEASUREMENTS"
+        label="Take Measurements"
+      />
     </QCardSection>
   </QCard>
 </template>

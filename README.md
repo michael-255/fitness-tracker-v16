@@ -4,9 +4,9 @@ Fitness Tracker web app that only stores your data locally.
 
 ## Todos
 
+- [x] Add available workouts to `Dashboard` (Workout Cards - Multiple)
 - [ ] Add `AppTable.ACTIVE_WORKOUTS`
 - [ ] Add `AppTable.ACTIVE_EXERCISES`
-- [ ] Add available workouts to `Dashboard` (Workout Cards - Multiple)
 - [ ] Build `active-workout` route (use the ACTIVE view from boilerplate app)
 - [ ] Add resumable workouts to `Dashboard` (Resume Cards - Multiple)
 - [ ] Build the `Active Workout` functionality

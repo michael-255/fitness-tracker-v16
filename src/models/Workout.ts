@@ -2,7 +2,7 @@ import { AppTable, Field, Operation } from '@/constants/core/data-enums'
 import type { DatabaseObject, DataTableProps, GeneratedReport } from '@/constants/types-interfaces'
 import { Activity, type IActivity } from '@/models/__Activity'
 import type { LocalDatabase } from '@/services/LocalDatabase'
-import { isoToDisplayDate, getDurationFromMilliseconds } from '@/utils/common'
+import { isoToDisplayDate } from '@/utils/common'
 import { defineAsyncComponent } from 'vue'
 import type { WorkoutRecord } from './WorkoutRecord'
 

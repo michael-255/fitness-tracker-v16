@@ -2,49 +2,60 @@
 import type { DatabaseObject } from '@/constants/types-interfaces'
 import { QBadge, QCard, QCardSection, QBtn, QIcon } from 'quasar'
 import { Icon } from '@/constants/ui/icon-enums'
-import { isoToDisplayDate } from '@/utils/common'
+import { getDurationFromMilliseconds, isoToDisplayDate } from '@/utils/common'
 import { useTimeAgo } from '@vueuse/core'
 import { onUpdated, ref } from 'vue'
 import { AppTable, Field, Operation } from '@/constants/core/data-enums'
 import { useLogger } from '@/use/useLogger'
 import { DB } from '@/services/LocalDatabase'
 import useOperationDialogStore from '@/stores/operation-dialog'
-import SaveMeasurementInput from './inputs/SaveMeasurementInput.vue'
+import { RouteName } from '@/constants/ui/routing-enums'
 
 // Props & Emits
 const props = defineProps<{
-  measurementCard: DatabaseObject
+  beginWorkoutCard: DatabaseObject
 }>()
 
 const { log } = useLogger()
 const operationDialogStore = useOperationDialogStore()
 
 // These ensure a live update of the time since the last record
-const previousCreatedDateRef = ref(new Date(props.measurementCard?.previousCreatedDate || '')) // Ref of the date
+const previousCreatedDateRef = ref(new Date(props.beginWorkoutCard?.previousCreatedDate || '')) // Ref of the date
 const timeAgo = useTimeAgo(previousCreatedDateRef) // Tracks the ref
+const duration = calculateDuration()
 
 onUpdated(() => {
-  previousCreatedDateRef.value = new Date(props.measurementCard?.previousCreatedDate || '')
+  previousCreatedDateRef.value = new Date(props.beginWorkoutCard?.previousCreatedDate || '')
 })
 
 async function onReportDialog(): Promise<void> {
   try {
     const selectedItem = await DB.getFirstByField(
-      AppTable.MEASUREMENTS,
+      AppTable.WORKOUTS,
       Field.ID,
-      props.measurementCard?.id
+      props.beginWorkoutCard?.id
     )
-    operationDialogStore.openDialog(AppTable.MEASUREMENTS, Operation.REPORT, selectedItem)
+    operationDialogStore.openDialog(AppTable.WORKOUTS, Operation.REPORT, selectedItem)
   } catch (error) {
-    log.error('TakeMeasurementCard:onReportDialog', error)
+    log.error('BeginWorkoutCard:onReportDialog', error)
   }
+}
+
+function calculateDuration(): string {
+  const started = new Date(props.beginWorkoutCard?.previousCreatedDate || '').getTime()
+  const finished = new Date(props.beginWorkoutCard?.previousFinishedDate || '').getTime()
+
+  const milliseconds = finished - started
+  const duration = getDurationFromMilliseconds(milliseconds)
+
+  return duration
 }
 </script>
 
 <template>
   <QCard>
     <QCardSection class="q-pt-sm">
-      <div class="text-h6 q-mb-sm">{{ measurementCard?.name }}</div>
+      <div class="text-h6 q-mb-sm">{{ beginWorkoutCard?.name }}</div>
 
       <QBtn
         round
@@ -61,22 +72,20 @@ async function onReportDialog(): Promise<void> {
       <div>
         <QIcon :name="Icon.CALENDAR_CHECK" />
         <span class="text-caption q-ml-xs">
-          {{ isoToDisplayDate(measurementCard?.previousCreatedDate) || '-' }}
+          {{ isoToDisplayDate(beginWorkoutCard?.previousCreatedDate) || '-' }}
         </span>
       </div>
 
       <div>
-        <QIcon :name="Icon.MEASUREMENTS" />
-        <span class="text-caption q-ml-xs">
-          {{ measurementCard?.previousMeasurementValue || '-' }}
-          {{ measurementCard?.measurementType }}
-        </span>
+        <QIcon :name="Icon.TIMER" />
+        <span class="text-caption q-ml-xs"> {{ duration || '-' }} </span>
       </div>
 
-      <SaveMeasurementInput
-        :parentId="measurementCard?.id"
-        :measurementType="measurementCard?.measurementType"
-        :name="measurementCard?.name"
+      <QBtn
+        color="primary"
+        class="full-width q-mt-md"
+        label="Begin"
+        :to="{ name: RouteName.ACTIVE }"
       />
     </QCardSection>
   </QCard>

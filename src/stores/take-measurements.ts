@@ -16,7 +16,7 @@ const useTakeMeasurementsStore: StoreDefinition = defineStore({
   }),
 
   actions: {
-    async updateMeasurementCards(database: LocalDatabase): Promise<void> {
+    async updateTakeMeasurementCards(database: LocalDatabase): Promise<void> {
       // Measurements
       const measurements = (await database.getAll(AppTable.MEASUREMENTS)).sort((a: any, b: any) => {
         return a.name.localeCompare(b.name)

@@ -10,7 +10,7 @@ const takeMeasurementsStore = useTakeMeasurementsStore()
 
 onMounted(async () => {
   try {
-    await takeMeasurementsStore.updateMeasurementCards(DB)
+    await takeMeasurementsStore.updateTakeMeasurementCards(DB)
   } catch (error) {
     log.error('TakeMeasurementsList:onMounted', error)
   }

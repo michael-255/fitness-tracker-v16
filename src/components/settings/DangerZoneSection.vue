@@ -23,6 +23,7 @@ import DeleteDBBtn from '@/components/settings/buttons/DeleteDBBtn.vue'
       <div>
         <ClearAllBtn />
       </div>
+
       <div class="q-mt-md">
         <DeleteDBBtn />
       </div>

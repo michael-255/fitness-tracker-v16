@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { QPage } from 'quasar'
-import MessageCard from './MessageCard.vue'
+import MessageCard from '@/components/dashboard/MessageCard.vue'
+import BeginWorkoutsList from './BeginWorkoutsList.vue'
 </script>
 
 <template>
@@ -9,6 +10,8 @@ import MessageCard from './MessageCard.vue'
       <div class="col-12">
         <MessageCard />
       </div>
+
+      <BeginWorkoutsList />
     </div>
   </QPage>
 </template>
