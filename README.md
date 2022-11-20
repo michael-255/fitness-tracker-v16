@@ -4,23 +4,12 @@ Fitness Tracker web app that only stores your data locally.
 
 ## Todos
 
-- [ ] Model Components, so I can manually create, update, and more!
-
-  - [x] `Exercise`
-    - [x] `ExerciseTracksSelect.vue`
-  - [x] `ExerciseRecord`
-    - [x] `SetInput.vue`
-    - [x] `WeightRepsItem.vue`
-  - [ ] `Workout`
-    - [ ] `ExerciseIdsSelect.vue`
-  - [ ] `WorkoutRecord`
-    - [ ] `FinishedDateInput.vue`
-    - [ ] `ExerciseRecordIdsSelect.vue`
-
 - [ ] Record Converters (based on previous fitness trackers)
 
   - [ ] Default Exercises
   - [ ] Default Workouts
+
+- [ ] Fix model `Reports`
 
 - [ ] New Routes
 

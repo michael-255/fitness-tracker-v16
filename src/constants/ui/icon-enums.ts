@@ -30,6 +30,7 @@ export enum Icon {
   TIMER = 'timer',
   CALENDAR_DATE = 'event',
   CALENDAR_CHECK = 'event_available',
+  CALENDAR_CLEAR = 'event_busy',
   RETURN_TO_DASHBOARD = 'exit_to_app',
   TIME = 'access_time',
   RENEW = 'autorenew',

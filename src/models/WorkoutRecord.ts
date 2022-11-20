@@ -3,7 +3,7 @@ import { AppTable, Field, Operation } from '@/constants/core/data-enums'
 import type { DatabaseObject, DataTableProps } from '@/constants/types-interfaces'
 import type { LocalDatabase } from '@/services/LocalDatabase'
 import { isoToDisplayDate } from '@/utils/common'
-// import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
 export interface IWorkoutRecord extends IRecord {
   finishedDate: string
@@ -38,7 +38,9 @@ export class WorkoutRecord extends Record {
     originalId: string,
     props: DatabaseObject
   ): Promise<void> {
-    const { id, createdDate, parentId, finishedDate, exerciseRecordIds } = props
+    const { id, createdDate, parentId, finishedDate } = props
+    let { exerciseRecordIds } = props
+    exerciseRecordIds = [...exerciseRecordIds] // Required to bypass Dexie cloning issue
     await database.updateById(
       AppTable.WORKOUT_RECORDS,
       originalId,
@@ -47,7 +49,9 @@ export class WorkoutRecord extends Record {
   }
 
   static async create(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { id, createdDate, parentId, finishedDate, exerciseRecordIds } = data
+    const { id, createdDate, parentId, finishedDate } = data
+    let { exerciseRecordIds } = data
+    exerciseRecordIds = [...exerciseRecordIds] // Required to bypass Dexie cloning issue
     await database.add(
       AppTable.WORKOUT_RECORDS,
       new WorkoutRecord({ id, createdDate, parentId, finishedDate, exerciseRecordIds })
@@ -81,7 +85,7 @@ export class WorkoutRecord extends Record {
   }
 
   static getVisibleColumns(): Field[] {
-    return []
+    return [Field.FINISHED_DATE]
   }
 
   static getFields() {
@@ -91,8 +95,12 @@ export class WorkoutRecord extends Record {
   static getFieldComponents(): any {
     return [
       ...Record.getFieldComponents(),
-      // defineAsyncComponent(() => import('@/components/page-table/inputs/FinishedDateInput.vue')),
-      // defineAsyncComponent(() => import('@/components/page-table/inputs/ExerciseRecordIdsSelect.vue')),
+      defineAsyncComponent(
+        () => import('@/components/shared/operation-dialog/inputs/FinishedDateInput.vue')
+      ),
+      defineAsyncComponent(
+        () => import('@/components/shared/operation-dialog/inputs/ExerciseRecordIdsSelect.vue')
+      ),
     ]
   }
 

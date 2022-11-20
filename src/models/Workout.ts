@@ -2,7 +2,7 @@ import { AppTable, Field, Operation } from '@/constants/core/data-enums'
 import type { DatabaseObject, DataTableProps } from '@/constants/types-interfaces'
 import { Activity, type IActivity } from '@/models/__Activity'
 import type { LocalDatabase } from '@/services/LocalDatabase'
-// import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
 export interface IWorkout extends IActivity {
   exerciseIds: string[]
@@ -59,7 +59,9 @@ export class Workout extends Activity {
     originalId: string,
     props: DatabaseObject
   ): Promise<void> {
-    const { id, createdDate, name, exerciseIds } = props
+    const { id, createdDate, name } = props
+    let { exerciseIds } = props
+    exerciseIds = [...exerciseIds] // Required to bypass Dexie cloning issue
     await database.updateById(
       AppTable.WORKOUTS,
       originalId,
@@ -68,7 +70,9 @@ export class Workout extends Activity {
   }
 
   static async create(database: LocalDatabase, data: DatabaseObject): Promise<void> {
-    const { id, createdDate, name, exerciseIds } = data
+    const { id, createdDate, name } = data
+    let { exerciseIds } = data
+    exerciseIds = [...exerciseIds] // Required to bypass Dexie cloning issue
     await database.add(AppTable.WORKOUTS, new Workout({ id, createdDate, name, exerciseIds }))
   }
 
@@ -110,7 +114,9 @@ export class Workout extends Activity {
   static getFieldComponents(): any {
     return [
       ...Activity.getFieldComponents(),
-      // defineAsyncComponent(() => import('@/components/page-table/inputs/ExerciseIdsSelect.vue')),
+      defineAsyncComponent(
+        () => import('@/components/shared/operation-dialog/inputs/ExerciseIdsSelect.vue')
+      ),
     ]
   }
 
