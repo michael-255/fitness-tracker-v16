@@ -4,7 +4,7 @@ Fitness Tracker web app that only stores your data locally.
 
 ## Todos
 
-- [ ] Build the `Active Workout` page
+- [ ] Build the `Active Workout` page (need to expand on this)
 
 ## Table of Contents
 

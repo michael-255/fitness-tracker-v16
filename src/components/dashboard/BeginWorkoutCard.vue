@@ -72,7 +72,7 @@ async function beginWorkout(): Promise<void> {
       NotifyColor.WARN,
       async (): Promise<void> => {
         try {
-          createActiveWorkout()
+          await createActiveWorkout()
           router.push({ name: RouteName.ACTIVE_WORKOUT })
         } catch (error) {
           log.error('BeginWorkoutCard:beginWorkout', error)
@@ -81,7 +81,7 @@ async function beginWorkout(): Promise<void> {
     )
   } else {
     // Create an active workout
-    createActiveWorkout()
+    await createActiveWorkout()
     router.push({ name: RouteName.ACTIVE_WORKOUT })
   }
 }

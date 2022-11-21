@@ -9,16 +9,32 @@ import {
   QSpace,
   QIcon,
 } from 'quasar'
-import { type Ref, ref, watch } from 'vue'
-import { AppString } from '@/constants/ui/string-enums'
+import { type Ref, ref, watch, onMounted } from 'vue'
 import { RouteName } from '@/constants/ui/routing-enums'
 import { Icon } from '@/constants/ui/icon-enums'
 import { getDurationFromMilliseconds } from '@/utils/common'
 import { useInterval } from '@vueuse/core'
+import { DB } from '@/services/LocalDatabase'
+import { AppTable, Field } from '@/constants/core/data-enums'
+import type { WorkoutRecord } from '@/models/WorkoutRecord'
+import type { Workout } from '@/models/Workout'
 
 const counter = useInterval(1000)
 const recordedTime = new Date().getTime()
 const duration: Ref<string> = ref('-')
+const workoutName: Ref<string> = ref('')
+
+onMounted(async () => {
+  const activeWorkoutRecord = (await DB.getAll(AppTable.ACTIVE_WORKOUTS))[0] as WorkoutRecord
+
+  const workout = (await DB.getFirstByField(
+    AppTable.WORKOUTS,
+    Field.ID,
+    activeWorkoutRecord?.parentId
+  )) as Workout
+
+  workoutName.value = workout?.name
+})
 
 watch(counter, () => {
   const now = new Date().getTime()
@@ -30,7 +46,7 @@ watch(counter, () => {
   <QLayout elevated view="hHh LpR lff">
     <QHeader elevated>
       <QToolbar>
-        <QToolbarTitle>{{ AppString.APP_NAME }}</QToolbarTitle>
+        <QToolbarTitle>{{ workoutName }}</QToolbarTitle>
         <QBtn flat dense :to="{ name: RouteName.DASHBOARD }" :icon="Icon.RETURN_TO_DASHBOARD" />
       </QToolbar>
     </QHeader>
