@@ -4,7 +4,14 @@ Fitness Tracker web app that only stores your data locally.
 
 ## Todos
 
-- [ ] Build the `Active Workout` page (need to expand on this)
+- [ ] `ActiveWeightRepsInput.vue` component
+
+  - [ ] Display set recording components (similar to `SetInput` and `WeightRepsItem`)
+  - [ ] Input should update `activeExerciseRecords` in DB
+  - [ ] Have input hints for previous values for Weight & Reps
+
+- [ ] Move `operation-dialog` components out of `shared` (repeat for boilerplate v2 app?)
+- [ ] Update app `favicon`
 
 ## Table of Contents
 

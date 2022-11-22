@@ -97,7 +97,7 @@ export enum MeasurementType {
  * Which exercise fields are used by a specific Exercise.
  */
 export enum ExerciseTracks {
-  CONFIRMATION_ONLY = 'Confirmation Only',
+  REMINDER_ONLY = 'Reminder Only',
   WEIGHT_AND_REPS = 'Weight & Reps',
 }
 

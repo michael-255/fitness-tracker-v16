@@ -27,6 +27,7 @@ export enum Icon {
   WORKOUTS = 'assignment',
   LOGS = 'plagiarism',
   // Misc
+  ACTIVE_NOTIFY = 'notifications_active',
   TIMER = 'timer',
   CALENDAR_DATE = 'event',
   CALENDAR_CHECK = 'event_available',

@@ -4,7 +4,7 @@ import { QBadge, QCard, QCardSection, QBtn, QIcon } from 'quasar'
 import { Icon } from '@/constants/ui/icon-enums'
 import { getDurationFromMilliseconds, isoToDisplayDate, uuid } from '@/utils/common'
 import { useTimeAgo } from '@vueuse/core'
-import { onUpdated, ref } from 'vue'
+import { onUpdated, ref, type Ref } from 'vue'
 import { AppTable, Field, Operation } from '@/constants/core/data-enums'
 import { useLogger } from '@/use/useLogger'
 import { DB } from '@/services/LocalDatabase'
@@ -30,10 +30,11 @@ const operationDialogStore = useOperationDialogStore()
 // These ensure a live update of the time since the last record
 const previousCreatedDateRef = ref(new Date(props.beginWorkoutCard?.previousCreatedDate || '')) // Ref of the date
 const timeAgo = useTimeAgo(previousCreatedDateRef) // Tracks the ref
-const duration = calculateDuration()
+const workoutDuration: Ref<string> = ref('-')
 
 onUpdated(() => {
   previousCreatedDateRef.value = new Date(props.beginWorkoutCard?.previousCreatedDate || '')
+  workoutDuration.value = calculateDuration()
 })
 
 async function onReportDialog(): Promise<void> {
@@ -151,7 +152,7 @@ async function createActiveWorkout(): Promise<void> {
 
       <div>
         <QIcon :name="Icon.TIMER" />
-        <span class="text-caption q-ml-xs"> {{ duration || '-' }} </span>
+        <span class="text-caption q-ml-xs"> {{ workoutDuration || '-' }} </span>
       </div>
 
       <QBtn color="primary" class="full-width q-mt-md" label="Begin" @click="beginWorkout()" />

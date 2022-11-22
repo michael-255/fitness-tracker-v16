@@ -1,42 +1,27 @@
 <script setup lang="ts">
-import type { DatabaseObject } from '@/constants/types-interfaces'
-import { QBadge, QCard, QCardSection, QBtn, QIcon } from 'quasar'
+import { QCard, QCardSection, QBtn } from 'quasar'
 import { Icon } from '@/constants/ui/icon-enums'
-import { isoToDisplayDate } from '@/utils/common'
-import { useTimeAgo } from '@vueuse/core'
-import { onUpdated, ref } from 'vue'
 import { AppTable, ExerciseTracks, Field, Operation } from '@/constants/core/data-enums'
 import { useLogger } from '@/use/useLogger'
 import { DB } from '@/services/LocalDatabase'
 import useOperationDialogStore from '@/stores/operation-dialog'
-import SaveMeasurementInput from './inputs/SaveMeasurementInput.vue'
+import ActiveReminderSection from '@/components/active-workout/inputs/ActiveReminderSection.vue'
 
 // Props & Emits
 const props = defineProps<{
-  exerciseName: string | undefined
-  exerciseTracks: ExerciseTracks | undefined
-  exerciseId: string
+  name?: string
+  tracks?: ExerciseTracks
+  id?: string // For updating the active exercise record
+  parentId?: string // For looking up the previous input value (if any)
 }>()
 
 const { log } = useLogger()
 const operationDialogStore = useOperationDialogStore()
 
-// These ensure a live update of the time since the last record
-const previousCreatedDateRef = ref(new Date(props.measurementCard?.previousCreatedDate || '')) // Ref of the date
-const timeAgo = useTimeAgo(previousCreatedDateRef) // Tracks the ref
-
-onUpdated(() => {
-  previousCreatedDateRef.value = new Date(props.measurementCard?.previousCreatedDate || '')
-})
-
 async function onReportDialog(): Promise<void> {
   try {
-    const selectedItem = await DB.getFirstByField(
-      AppTable.MEASUREMENTS,
-      Field.ID,
-      props.measurementCard?.id
-    )
-    operationDialogStore.openDialog(AppTable.MEASUREMENTS, Operation.REPORT, selectedItem)
+    const selectedItem = await DB.getFirstByField(AppTable.EXERCISES, Field.ID, props?.parentId)
+    operationDialogStore.openDialog(AppTable.EXERCISES, Operation.REPORT, selectedItem)
   } catch (error) {
     log.error('TakeMeasurementCard:onReportDialog', error)
   }
@@ -44,9 +29,11 @@ async function onReportDialog(): Promise<void> {
 </script>
 
 <template>
-  <QCard>
-    <QCardSection class="q-pt-sm">
-      <div class="text-h6 q-mb-sm">{{ measurementCard?.name }}</div>
+  <QCard class="q-mb-md">
+    <ActiveReminderSection v-if="tracks === ExerciseTracks.REMINDER_ONLY" :exerciseName="name" />
+
+    <QCardSection v-else class="q-py-sm">
+      <div class="text-h6 q-mb-sm">{{ name }}</div>
 
       <QBtn
         round
@@ -57,29 +44,12 @@ async function onReportDialog(): Promise<void> {
       />
 
       <div>
-        <QBadge class="q-py-xs q-mb-xs" rounded color="grey-9" :label="timeAgo || 'never'" />
+        {{ tracks }}
       </div>
 
-      <div>
-        <QIcon :name="Icon.CALENDAR_CHECK" />
-        <span class="text-caption q-ml-xs">
-          {{ isoToDisplayDate(measurementCard?.previousCreatedDate) || '-' }}
-        </span>
-      </div>
+      <div>Active Exercise Record Id: {{ id }}</div>
 
-      <div>
-        <QIcon :name="Icon.MEASUREMENTS" />
-        <span class="text-caption q-ml-xs">
-          {{ measurementCard?.previousMeasurementValue || '-' }}
-          {{ measurementCard?.measurementType }}
-        </span>
-      </div>
-
-      <SaveMeasurementInput
-        :parentId="measurementCard?.id"
-        :measurementType="measurementCard?.measurementType"
-        :name="measurementCard?.name"
-      />
+      <div>Exercise Id (Parent): {{ parentId }}</div>
     </QCardSection>
   </QCard>
 </template>

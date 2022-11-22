@@ -14,13 +14,13 @@ const defaultExercises = [
     id: '7d8ebfc8-c9d2-48f0-9abd-99411d0d5cbe',
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Warm-up',
-    exerciseTracks: 'Confirmation Only',
+    exerciseTracks: 'Reminder Only',
   },
   {
     id: '3df82a9d-9ebc-4816-9a26-994f33ef892e',
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Cool-down',
-    exerciseTracks: 'Confirmation Only',
+    exerciseTracks: 'Reminder Only',
   },
   {
     id: 'adc82c70-683c-4594-b9fc-cfa0c5e73eeb',
@@ -68,7 +68,7 @@ const defaultExercises = [
     id: '293e5f14-e8fb-4667-b3e5-04f1e8bdd5d6',
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Stretching',
-    exerciseTracks: 'Confirmation Only',
+    exerciseTracks: 'Reminder Only',
   },
   {
     id: 'd681459e-10c8-40ae-94e9-9b06b7c40367',

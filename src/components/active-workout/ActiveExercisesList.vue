@@ -6,6 +6,7 @@ import type { ExerciseRecord } from '@/models/ExerciseRecord'
 import { AppTable, ExerciseTracks, Field } from '@/constants/core/data-enums'
 import type { Exercise } from '@/models/Exercise'
 import type { WorkoutRecord } from '@/models/WorkoutRecord'
+import ActiveExerciseCard from './ActiveExerciseCard.vue'
 
 const { log } = useLogger()
 const activeExerciseRecords: Ref<ExerciseRecord[]> = ref([])
@@ -43,11 +44,11 @@ function getExerciseTracks(parentId: string): ExerciseTracks | undefined {
 
 <template>
   <div v-for="record in activeExerciseRecords" :key="record.id" class="col-sm-6 col-xs-12">
-    <!-- ActiveExerciseCard - TODO -->
-    <QCard class="q-mb-md">
-      <QCardSection>
-        <div class="text-h6">{{ getExerciseName(record.parentId) }}</div>
-      </QCardSection>
-    </QCard>
+    <ActiveExerciseCard
+      :name="getExerciseName(record.parentId)"
+      :tracks="getExerciseTracks(record.parentId)"
+      :id="record.id"
+      :parentId="record.parentId"
+    />
   </div>
 </template>

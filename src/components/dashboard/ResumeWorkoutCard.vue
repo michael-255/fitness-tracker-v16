@@ -30,13 +30,21 @@ onUpdated(async () => {
 })
 
 onMounted(async () => {
-  activeWorkoutRecord.value = (await DB.getAll(AppTable.ACTIVE_WORKOUTS))[0] as WorkoutRecord
-  const workout = (await DB.getFirstByField(
-    AppTable.WORKOUTS,
-    Field.ID,
-    activeWorkoutRecord.value?.parentId
-  )) as Workout
-  workoutName.value = workout?.name
+  try {
+    activeWorkoutRecord.value = (await DB.getAll(AppTable.ACTIVE_WORKOUTS))[0] as WorkoutRecord
+
+    if (activeWorkoutRecord.value?.parentId) {
+      const workout = (await DB.getFirstByField(
+        AppTable.WORKOUTS,
+        Field.ID,
+        activeWorkoutRecord.value?.parentId
+      )) as Workout
+
+      workoutName.value = workout?.name
+    }
+  } catch (error) {
+    log.error('ResumeWorkoutCard:onMounted', error)
+  }
 })
 
 async function deleteActiveWorkout(): Promise<void> {

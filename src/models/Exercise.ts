@@ -40,34 +40,51 @@ export class Exercise extends Activity {
 
     const parent = (await database.getFirstByField(AppTable.EXERCISES, Field.ID, id)) as Exercise
 
-    const totalReps = records.map((r: any) => {
-      if (r?.reps) {
-        return r.reps.reduce((total: number, current: number) => {
-          if (current) {
-            return total + current
-          }
-        }, 0)
-      } else {
-        return null
+    // For each record
+    const totalReps = [] as number[]
+    const totalWeight = [] as number[]
+    const heaviestWeight = [] as number[]
+
+    records.forEach((record: ExerciseRecord) => {
+      // Ensure weight and reps exists
+      const recordReps = record?.reps ? record.reps : []
+      const recordWeight = record?.weight ? record.weight : []
+
+      let totalRepsForRecord = 0
+      let totalWeightForRecord = 0
+      let heaviestWeightForRecord = 0
+
+      // Get totals and heaviest for each record
+      for (let i = 0; i < recordReps.length; i++) {
+        const indexReps = recordReps[i] ? recordReps[i] : 0
+        const indexWeight = recordWeight[i] ? recordWeight[i] : 0
+
+        // Find the hightest weight lifted
+        if (indexWeight > heaviestWeightForRecord) {
+          heaviestWeightForRecord = indexWeight
+        }
+
+        totalWeightForRecord += indexWeight * indexReps // Example: 135x5
+        totalRepsForRecord += indexReps
       }
+
+      totalReps.push(totalRepsForRecord)
+      totalWeight.push(totalWeightForRecord)
+      heaviestWeight.push(heaviestWeightForRecord)
     })
 
-    const totalWeight = records.map((r: any) => {
-      if (r?.weight) {
-        return r.weight.reduce((total: number, current: number) => {
-          if (current) {
-            return total + current
-          }
-        }, 0)
-      } else {
-        return null
-      }
-    })
+    const heaviestWeightDataset = [
+      {
+        label: 'Heaviest Weight Rep Lifted (lbs)',
+        borderColor: '#F44336',
+        data: heaviestWeight,
+      },
+    ]
 
     const totalWeightDataset = [
       {
         label: 'Total Weight Lifted (lbs)',
-        borderColor: '#F44336',
+        borderColor: '#FF9800',
         data: totalWeight,
       },
     ]
@@ -81,6 +98,14 @@ export class Exercise extends Activity {
     ]
 
     const generatedReports = [] as GeneratedReport[]
+
+    generatedReports.push({
+      title: parent?.name,
+      firstRecordDate: isoToDisplayDate(records[0]?.createdDate) || '-',
+      lastRecordDate: isoToDisplayDate(records[records.length - 1]?.createdDate) || '-',
+      chartLabels: records.map(() => ''),
+      chartDatasets: heaviestWeightDataset,
+    })
 
     generatedReports.push({
       title: parent?.name,

@@ -14,7 +14,7 @@ import WeightRepsItem from '@/components/shared/operation-dialog/inputs/WeightRe
 const { log } = useLogger()
 const { confirmDialog, dismissDialog } = useSimpleDialogs()
 const operationDialogStore = useOperationDialogStore()
-const exerciseTracks: Ref<ExerciseTracks> = ref(ExerciseTracks.CONFIRMATION_ONLY)
+const exerciseTracks: Ref<ExerciseTracks> = ref(ExerciseTracks.REMINDER_ONLY)
 const setLimit = 20 // Not allowing more then 20 sets ATM
 
 onMounted(() => {

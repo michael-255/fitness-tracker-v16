@@ -9,7 +9,7 @@ import {
   QSpace,
   QIcon,
 } from 'quasar'
-import { type Ref, ref, watch, onMounted } from 'vue'
+import { type Ref, ref, watch, onMounted, onUpdated } from 'vue'
 import { RouteName } from '@/constants/ui/routing-enums'
 import { Icon } from '@/constants/ui/icon-enums'
 import { getDurationFromMilliseconds } from '@/utils/common'
@@ -18,27 +18,37 @@ import { DB } from '@/services/LocalDatabase'
 import { AppTable, Field } from '@/constants/core/data-enums'
 import type { WorkoutRecord } from '@/models/WorkoutRecord'
 import type { Workout } from '@/models/Workout'
+import { useLogger } from '@/use/useLogger'
+
+const { log } = useLogger()
 
 const counter = useInterval(1000)
-const recordedTime = new Date().getTime()
+const createdDate: Ref<number> = ref(0)
 const duration: Ref<string> = ref('-')
 const workoutName: Ref<string> = ref('')
 
 onMounted(async () => {
-  const activeWorkoutRecord = (await DB.getAll(AppTable.ACTIVE_WORKOUTS))[0] as WorkoutRecord
+  try {
+    const activeWorkoutRecord = (await DB.getAll(AppTable.ACTIVE_WORKOUTS))[0] as WorkoutRecord
 
-  const workout = (await DB.getFirstByField(
-    AppTable.WORKOUTS,
-    Field.ID,
-    activeWorkoutRecord?.parentId
-  )) as Workout
+    if (activeWorkoutRecord?.parentId) {
+      const workout = (await DB.getFirstByField(
+        AppTable.WORKOUTS,
+        Field.ID,
+        activeWorkoutRecord?.parentId
+      )) as Workout
 
-  workoutName.value = workout?.name
+      workoutName.value = workout?.name
+      createdDate.value = new Date(activeWorkoutRecord.createdDate).getTime()
+    }
+  } catch (error) {
+    log.error('ActiveLayout:onMounted', error)
+  }
 })
 
 watch(counter, () => {
   const now = new Date().getTime()
-  duration.value = getDurationFromMilliseconds(now - recordedTime)
+  duration.value = getDurationFromMilliseconds(now - createdDate.value)
 })
 </script>
 
