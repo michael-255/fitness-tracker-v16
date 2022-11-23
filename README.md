@@ -2,9 +2,10 @@
 
 Fitness Tracker web app that only stores your data locally.
 
-## Todos
+## Notes
 
-- [ ] TBD...
+The app is good enough for me to use. I'll be taking notes of the things that can be improved with
+the boilerplate app (v3) going forward.
 
 ## Table of Contents
 
