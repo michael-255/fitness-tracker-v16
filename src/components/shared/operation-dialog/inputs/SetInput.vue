@@ -159,7 +159,7 @@ watch(
 
   <QCard v-else>
     <QCardSection class="row items-start">
-      <div>Exercise tracking is set to confirmation only</div>
+      <div>Exercise tracking is set to "{{ ExerciseTracks.REMINDER_ONLY }}"</div>
     </QCardSection>
   </QCard>
 </template>
