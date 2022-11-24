@@ -62,7 +62,7 @@ async function onSave(): Promise<void> {
           name: 'SaveMeasurement:Info',
         })
 
-        await takeMeasurementsStore.updateMeasurementCards(DB) // Reload cards
+        await takeMeasurementsStore.updateTakeMeasurementCards(DB) // Reload cards
         operationDialogStore.closeDialog(DB)
         inputNumber.value = null
       } catch (error) {
