@@ -4,7 +4,7 @@
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone",
-  "start_url": "/fitness-tracker-v16",
+  "start_url": "./index.html",
   "orientation": "any",
   "icons": [
     {
