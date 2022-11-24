@@ -48,6 +48,11 @@ onMounted(async () => {
       weightHints.value = newestRecord?.weight?.map((w: number) => String(w || '-')) || []
       repHints.value = newestRecord?.reps?.map((r: number) => String(r || '-')) || []
     }
+
+    // Add at least 1 set
+    if (activeReps.value.length === 0) {
+      addSet()
+    }
   } catch (error) {
     log.error('ActiveSetInput:onMounted', error)
   }
