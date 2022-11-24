@@ -4,7 +4,7 @@ import { AppString } from '@/constants/ui/string-enums'
 </script>
 
 <template>
-  <QLayout elevated view="hHh LpR lff">
+  <QLayout view="hHh LpR lff">
     <QHeader elevated>
       <QToolbar>
         <QToolbarTitle>{{ AppString.APP_NAME }}</QToolbarTitle>

@@ -53,7 +53,7 @@ watch(counter, () => {
 </script>
 
 <template>
-  <QLayout elevated view="hHh LpR lff">
+  <QLayout view="hHh LpR fFf">
     <QHeader elevated>
       <QToolbar>
         <QToolbarTitle>{{ workoutName }}</QToolbarTitle>
@@ -65,11 +65,13 @@ watch(counter, () => {
       <router-view />
     </QPageContainer>
 
-    <QFooter class="bg-dark">
+    <QFooter elevated class="bg-dark">
       <QToolbar>
         <QSpace />
+
         <QIcon :name="Icon.TIMER" size="sm" class="q-mr-sm" />
         <div class="text-h6">{{ duration }}</div>
+
         <QSpace />
       </QToolbar>
     </QFooter>
