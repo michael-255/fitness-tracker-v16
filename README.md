@@ -7,6 +7,8 @@ Fitness Tracker web app that only stores your data locally.
 The app is good enough for me to use. I'll be taking notes of the things that can be improved with
 the boilerplate app (v3) going forward.
 
+- [ ] Update Boilderplate App with manifest steps if it works
+
 ## Table of Contents
 
 - [Usage](#usage)
