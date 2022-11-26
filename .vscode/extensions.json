@@ -13,8 +13,6 @@
     "esbenp.prettier-vscode",
     // Git information in editor
     "eamodio.gitlens",
-    // Open server in browser
-    "ritwickdey.liveserver",
     // Better VSCode icons
     "pkief.material-icon-theme"
   ]
