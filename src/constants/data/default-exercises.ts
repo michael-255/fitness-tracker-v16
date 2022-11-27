@@ -211,7 +211,7 @@ const defaultExercises = [
   {
     id: '3af92ca9-66e9-4e97-88d9-f70af00251f1',
     createdDate: '2022-01-01T05:00:00.000Z',
-    name: 'Stiff Leg Deadlift',
+    name: 'Romanian Deadlift',
     exerciseTracks: 'Weight & Reps',
   },
   {
@@ -299,12 +299,6 @@ const defaultExercises = [
     exerciseTracks: 'Weight & Reps',
   },
   {
-    id: 'a40d7864-289b-4296-8241-ee242410c376',
-    createdDate: '2022-01-01T05:00:00.000Z',
-    name: 'Calf Raises',
-    exerciseTracks: 'Weight & Reps',
-  },
-  {
     id: '15fbfa18-18c0-4c94-9a8f-93eb96a4a95d',
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Hip Thrusters',
@@ -333,6 +327,66 @@ const defaultExercises = [
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Russian Twist',
     exerciseTracks: 'Weight & Reps',
+  },
+  {
+    id: '08481749-e037-43a5-a960-8148e54b7969',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Posture & Stretch Workout',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: 'b381ee00-edd7-499c-83f5-358e36a572b1',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Cable Lat Pulldowns',
+    exerciseTracks: 'Weight & Reps',
+  },
+  {
+    id: '4976dbac-8bce-4ad4-b9d6-27edeecb93d0',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Band Scapular Retractions',
+    exerciseTracks: 'Weight & Reps',
+  },
+  {
+    id: 'c73120b7-0c70-4248-8441-b7263e7f11e8',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Chin Tucks',
+    exerciseTracks: 'Weight & Reps',
+  },
+  {
+    id: '5bf68f4c-8324-4db7-a682-5fed5549abfa',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Wall Sit (20 count)',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: '5a22d2ce-d94e-4ef1-838a-785a74364044',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Laying Glute Stretch (20 count)',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: '1e5e8ca5-9dd3-4de9-88b3-ad197aecf980',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Calf and Wrist Wall Stretch (20 count)',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: 'a7eb02e6-90e4-466f-9d23-e59c6617f1cb',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Quad Stretch (20 count)',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: 'd9738508-4f59-45a9-8bf4-f28b5c6c7b76',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Toe Touch Stretch (20 count)',
+    exerciseTracks: 'Reminder Only',
+  },
+  {
+    id: '44a1a5d4-9b41-4f40-b513-fd7c90339c9b',
+    createdDate: '2022-01-01T05:00:00.000Z',
+    name: 'Doorway Chest Stretch (20 count)',
+    exerciseTracks: 'Reminder Only',
   },
 ]
 

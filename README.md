@@ -8,6 +8,8 @@ The app is good enough for me to use. I'll be taking notes of the things that ca
 the boilerplate app (v3) going forward.
 
 - [ ] Update Boilderplate App with manifest steps if it works
+- [ ] Add Blood Pressure measurements to Measurements
+- [ ] Add other blood work to Measurements
 
 ## Table of Contents
 
