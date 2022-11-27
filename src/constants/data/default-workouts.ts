@@ -69,6 +69,7 @@ const defaultWorkouts = [
     createdDate: '2022-01-01T05:00:00.000Z',
     name: 'Posture & Stretching',
     exerciseIds: [
+      '7d8ebfc8-c9d2-48f0-9abd-99411d0d5cbe', // warm-up
       'b381ee00-edd7-499c-83f5-358e36a572b1', // lat pulldowns
       '4976dbac-8bce-4ad4-b9d6-27edeecb93d0', // scapular retractions
       'c73120b7-0c70-4248-8441-b7263e7f11e8', // chin tucks
