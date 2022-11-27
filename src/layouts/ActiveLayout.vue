@@ -9,7 +9,7 @@ import {
   QSpace,
   QIcon,
 } from 'quasar'
-import { type Ref, ref, watch, onMounted, onUpdated } from 'vue'
+import { type Ref, ref, watch, onMounted } from 'vue'
 import { RouteName } from '@/constants/ui/routing-enums'
 import { Icon } from '@/constants/ui/icon-enums'
 import { getDurationFromMilliseconds } from '@/utils/common'
@@ -65,7 +65,7 @@ watch(counter, () => {
       <router-view />
     </QPageContainer>
 
-    <QFooter elevated class="bg-dark">
+    <QFooter elevated class="bg-primary">
       <QToolbar>
         <QSpace />
 
