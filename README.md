@@ -15,6 +15,7 @@ the boilerplate app (v3) going forward.
 - [ES2020 Support](#es2020-support)
 - [Misc Setup Notes](#misc-setup-notes)
 - [Additional Notes](#additional-notes)
+- [Credits](#credits)
 
 ## Usage
 
@@ -148,3 +149,14 @@ that is more performant. You can enable it by the following steps:
 ### Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Credits
+
+App favicon was generated using the following graphics from Twitter Twemoji:
+
+- Graphics Title: 1f3cb-fe0f-200d-2642-fe0f.svg
+- Graphics Author: Copyright 2020 Twitter, Inc and other contributors
+  (<https://github.com/twitter/twemoji>)
+- Graphics Source:
+  <https://github.com/twitter/twemoji/blob/master/assets/svg/1f3cb-fe0f-200d-2642-fe0f.svg>
+- Graphics License: CC-BY 4.0 (<https://creativecommons.org/licenses/by/4.0/>)
