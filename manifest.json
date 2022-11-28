@@ -3,7 +3,8 @@
   "short_name": "Fitness Tracker",
   "theme_color": "#000000",
   "background_color": "#000000",
-  "start_url": "/fitness-tracker-v16",
+  "display": "standalone",
+  "start_url": "https://michael-255.github.io/fitness-tracker-v16/",
   "orientation": "any",
   "icons": [
     {
