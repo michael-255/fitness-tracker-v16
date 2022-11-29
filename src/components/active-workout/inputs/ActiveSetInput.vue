@@ -47,6 +47,15 @@ onMounted(async () => {
 
       weightHints.value = newestRecord?.weight?.map((w: number) => String(w || '-')) || []
       repHints.value = newestRecord?.reps?.map((r: number) => String(r || '-')) || []
+
+      // TESTING
+      const previousRecords = (await DB.getAllByField(
+        AppTable.EXERCISE_RECORDS,
+        Field.PARENT_ID,
+        props.activeExerciseRecordparentId
+      )) as ExerciseRecord[]
+
+      weightHints.value[0] = getSet1WeightHint(previousRecords)
     }
 
     // Add at least 1 set
@@ -57,6 +66,48 @@ onMounted(async () => {
     log.error('ActiveSetInput:onMounted', error)
   }
 })
+
+function getSet1WeightHint(previousRecords: ExerciseRecord[]): string {
+  const previousSet1Weight_1 = previousRecords[0]?.weight?.[0]
+  const previousSet1Weight_2 = previousRecords[1]?.weight?.[0]
+  const previousSet1Weight_3 = previousRecords[2]?.weight?.[0]
+  const previousSet1Weight_4 = previousRecords[3]?.weight?.[0]
+  const previousSet1Weight_5 = previousRecords[4]?.weight?.[0]
+  const previousSet1Weight_6 = previousRecords[5]?.weight?.[0]
+
+  let firstStr = '-'
+  let incrementStr = ''
+
+  if (previousSet1Weight_1) {
+    firstStr = `${previousSet1Weight_1}`
+
+    if (previousSet1Weight_2) {
+      incrementStr = `${previousSet1Weight_1 - previousSet1Weight_2}`
+
+      if (previousSet1Weight_3) {
+        incrementStr = `${incrementStr}, ${previousSet1Weight_2 - previousSet1Weight_3}`
+
+        if (previousSet1Weight_4) {
+          incrementStr = `${incrementStr}, ${previousSet1Weight_3 - previousSet1Weight_4}`
+
+          if (previousSet1Weight_5) {
+            incrementStr = `${incrementStr}, ${previousSet1Weight_4 - previousSet1Weight_5}`
+
+            if (previousSet1Weight_6) {
+              incrementStr = `${incrementStr}, ${previousSet1Weight_5 - previousSet1Weight_6}`
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (incrementStr !== '') {
+    return `${firstStr} --- ${incrementStr}`
+  } else {
+    return firstStr
+  }
+}
 
 function addSet(): void {
   activeWeight.value.push(undefined)
