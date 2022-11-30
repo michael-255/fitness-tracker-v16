@@ -40,6 +40,21 @@ export class LocalDatabase {
    * @returns Array of data from table with matching field value
    */
   async getAllByField<T>(table: AppTable, field: Field, value: any): Promise<T[]> {
+    return await this.dexieWrapper
+      .table(table)
+      .where(field)
+      .equalsIgnoreCase(value)
+      .sortBy(Field.CREATED_DATE)
+  }
+
+  /**
+   * Get all data reversed from table with a specific field value.
+   * @param table
+   * @param field
+   * @param value
+   * @returns Array of data from table with matching field value
+   */
+  async getAllReversedByField<T>(table: AppTable, field: Field, value: any): Promise<T[]> {
     return (
       await this.dexieWrapper
         .table(table)

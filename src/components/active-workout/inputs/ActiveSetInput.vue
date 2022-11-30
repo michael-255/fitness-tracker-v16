@@ -48,8 +48,7 @@ onMounted(async () => {
       weightHints.value = newestRecord?.weight?.map((w: number) => String(w || '-')) || []
       repHints.value = newestRecord?.reps?.map((r: number) => String(r || '-')) || []
 
-      // TESTING
-      const previousRecords = (await DB.getAllByField(
+      const previousRecords = (await DB.getAllReversedByField(
         AppTable.EXERCISE_RECORDS,
         Field.PARENT_ID,
         props.activeExerciseRecordparentId
