@@ -1,6 +1,6 @@
 # Fitness Tracker V16
 
-_Will be archived in favor of fitness-web-app-2023 soon_
+_Advise using newer version of Fitness Web App_
 
 Fitness Tracker web app that only stores your data locally.
 
